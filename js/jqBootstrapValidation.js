@@ -6,6 +6,7 @@
  * License: MIT <http://opensource.org/licenses/mit-license.php> - see LICENSE file
  *
  * http://ReactiveRaven.github.com/jqBootstrapValidation/
+ * Uma grande amiga numa pequena caixinha
  */
 
 (function($) {
@@ -159,6 +160,16 @@
               $this.data("validationMinlengthMessage", message);
               $this.data("validationMinlengthMinlength", $this.attr("minlength"));
             }
+
+            if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "email") {
+              message = "E-Mail inválido<!-- data-validator-validemail-message to override -->";
+              if ($this.data("validationValidemailMessage")) {
+                message = $this.data("validationValidemailMessage");
+              } else if ($this.data("validationEmailMessage")) {
+                message = $this.data("validationEmailMessage");
+              }
+              $this.data("validationValidemailMessage", message);
+            }
             // ---------------------------------------------------------
             //                                                  REQUIRED
             // ---------------------------------------------------------
@@ -168,28 +179,6 @@
                 message = $this.data("validationRequiredMessage");
               }
               $this.data("validationRequiredMessage", message);
-            }
-            // ---------------------------------------------------------
-            //                                                    NUMBER
-            // ---------------------------------------------------------
-            if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "number") {
-              message = settings.builtInValidators.number.message;
-              if ($this.data("validationNumberMessage")) {
-                message = $this.data("validationNumberMessage");
-              }
-              $this.data("validationNumberMessage", message);
-            }
-            // ---------------------------------------------------------
-            //                                                     EMAIL
-            // ---------------------------------------------------------
-            if ($this.attr("type") !== undefined && $this.attr("type").toLowerCase() === "email") {
-              message = "Not a valid email address<!-- data-validator-validemail-message to override -->";
-              if ($this.data("validationValidemailMessage")) {
-                message = $this.data("validationValidemailMessage");
-              } else if ($this.data("validationEmailMessage")) {
-                message = $this.data("validationEmailMessage");
-              }
-              $this.data("validationValidemailMessage", message);
             }
             // ---------------------------------------------------------
             //                                                MINCHECKED
